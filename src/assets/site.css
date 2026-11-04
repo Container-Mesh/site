@@ -127,8 +127,6 @@ h1 {
   line-height: 1.45;
 }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-.contact-row { margin: 18px 0 0; }
-.contact-row a { color: var(--ink); font-weight: 600; }
 .button {
   display: inline-flex;
   align-items: center;
@@ -281,12 +279,9 @@ h1 {
 .site-footer {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 8px 24px 48px;
+  padding: 28px 24px 48px;
   color: var(--muted);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 22px;
-  justify-content: space-between;
+  font-size: 0.85rem;
   border-top: 1px solid var(--line);
 }
 .site-footer p { margin: 0; }

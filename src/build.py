@@ -132,8 +132,7 @@ def page(meta: dict[str, str], body: str, path: str, kind: str) -> str:
 {body}
 </main>
 <footer class="site-footer">
-  <p>© 2026 <a href="https://github.com/Aphelion-Works">Aphelion Works</a></p>
-  <p><a class="contact" href="#contact">Contact</a> · <a href="https://github.com/Container-Mesh/site/security/policy">Security reports stay private</a></p>
+  <p>© 2026 <a href="https://github.com/Aphelion-Works">Aphelion Works</a> · <a class="contact" href="#contact">Contact</a> · <a href="https://github.com/Container-Mesh/site/security/policy">Security reports stay private</a></p>
 </footer>
 </body>
 </html>
