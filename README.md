@@ -1,35 +1,10 @@
 # ContainerMesh
 
-A macOS menu-bar app that discovers Docker containers and connects to them through ContainerTunnel. You choose which names to publish. Networking stays off until you choose **Enable automatic networking**.
+ContainerMesh is a Mac app that lives in the menu bar. It finds the Docker containers already running and gives each one a local name, so you can reach it from your Mac.
 
-Container and Compose-stack DNS names are optional. The usual name is the container plus `mesh.test`.
+A name looks like `shop-web.mesh.test`. A Compose stack can be part of the name. ContainerMesh connects only after you turn networking on.
 
-| Site | URL |
-| --- | --- |
-| Product home | https://www.containermesh.app/ |
-| Documentation | https://www.containermesh.dev/docs/ |
+- Product home: https://www.containermesh.app/
+- Documentation: https://www.containermesh.dev/docs/
 
-This repository is the public site and the documentation.
-
-## Issues and security
-
-Public [Issues](https://github.com/Container-Mesh/site/issues) are for product bugs and for corrections to this site. Security reports stay private. Use the [security policy](SECURITY.md).
-
-## Preview
-
-```sh
-python3 src/build.py
-python3 -m http.server -d public
-```
-
-`python3 src/build.py --check` fails when `public/` does not match the sources, or when the copy picks up wording that does not belong on the public site.
-
-## Publish
-
-`main` builds with `python3 src/build.py` and deploys with Wrangler. The Worker serves both domains:
-
-- `www.containermesh.app` is the product home. A docs path redirects to `www.containermesh.dev`.
-- `www.containermesh.dev` is the documentation. `/` redirects to `/docs/`.
-- The apex names redirect to `www`.
-
-GitHub Actions also publishes `public/` to GitHub Pages as a preview.
+This repository is the website and the docs. Product bugs and corrections belong in [Issues](https://github.com/Container-Mesh/site/issues). Security reports stay private. See the [security policy](SECURITY.md).
