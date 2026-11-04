@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ContainerMesh frames</title>
+<style>
+  :root {
+    --canvas: #faf8f4;
+    --sidebar: #f1ece4;
+    --panel: #fffdf9;
+    --border: #e4ddd3;
+    --ink: #302a24;
+    --muted: #70665b;
+    --accent: #bd410d;
+    --on-accent: #fff9ee;
+    --selected: #f8e2ce;
+    --selected-ink: #8d350d;
+    --success: #287044;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #cfc8bc; }
+  body.shot, body.shot .stage { background: #fff; }
+  body.shot .stage { padding: 0; gap: 0; }
+  body.shot .stage > section { display: none; }
+  body.shot .stage > section.only { display: block; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+  .stage { display: flex; flex-direction: column; align-items: flex-start; gap: 36px; padding: 24px; }
+  .win { background: var(--canvas); overflow: hidden; }
+  .titlebar { height: 38px; display: flex; align-items: center; justify-content: space-between; padding: 0 12px 0 14px; background: var(--sidebar); }
+  .lights { display: flex; gap: 8px; }
+  .lights i { width: 12px; height: 12px; border-radius: 50%; display: block; }
+  .lights i:nth-child(1) { background: #ff5f57; box-shadow: inset 0 0 0 0.5px #e0443e; }
+  .lights i:nth-child(2) { background: #febc2e; box-shadow: inset 0 0 0 0.5px #dea123; }
+  .lights i:nth-child(3) { background: #28c840; box-shadow: inset 0 0 0 0.5px #1aab29; }
+  .status { display: flex; align-items: center; gap: 12px; min-height: 40px; padding: 8px 16px; background: var(--sidebar); border-bottom: 1px solid var(--border); font-size: 13px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); flex: none; }
+  .status .state { font-weight: 560; }
+  .vrule { width: 1px; height: 16px; background: var(--border); flex: none; }
+  .muted { color: var(--muted); }
+  .grow { flex: 1; }
+  button.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+    height: 22px; padding: 0 8px; border-radius: 5px; border: 1px solid #c9c3b8;
+    background: linear-gradient(#ffffff, #f3f0ea); color: var(--ink);
+    font: 12px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    box-shadow: inset 0 0.5px 0 #fff;
+  }
+  button.btn.icon { width: 26px; padding: 0; }
+  button.btn.wide { min-width: 86px; }
+  button.primary {
+    height: 24px; padding: 0 12px; border-radius: 6px; border: 1px solid #8d350d;
+    background: linear-gradient(#d15a22, #bd410d); color: var(--on-accent);
+    font: 600 13px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .panel { margin: 16px; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .head { display: flex; align-items: center; gap: 16px; padding: 12px 16px; }
+  h1 { margin: 0; font-size: 17px; font-weight: 650; letter-spacing: -0.022em; }
+  .search {
+    width: 220px; height: 22px; border-radius: 5px; border: 1px solid #c9c3b8;
+    background: #fff; color: #8a8176; padding: 0 6px; font: 13px -apple-system, BlinkMacSystemFont, sans-serif;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.04);
+  }
+  .hair { height: 1px; background: var(--border); }
+  .stack { display: flex; align-items: center; gap: 10px; padding: 8px 16px; background: var(--sidebar); font-size: 13px; }
+  .stack strong { font-weight: 650; }
+  .row { display: flex; align-items: center; gap: 12px; padding: 6px 16px 6px 36px; min-height: 48px; border-top: 1px solid var(--border); background: var(--panel); }
+  .row.loose { padding-left: 16px; }
+  .name strong { display: block; font-size: 13px; font-weight: 510; }
+  .dns { display: flex; align-items: center; gap: 2px; margin-top: 2px; }
+  .dns input {
+    width: 180px; height: 20px; border: 1px solid #c9c3b8; border-radius: 5px; padding: 0 6px;
+    font: 12px ui-monospace, "SF Mono", Menlo, monospace; color: var(--ink); background: #fff;
+  }
+  .dns span { color: var(--muted); font-size: 12px; }
+  .sw { width: 28px; height: 16px; border-radius: 8px; background: #e5e3e0; position: relative; flex: none; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,.08); }
+  .sw i { position: absolute; top: 1px; left: 1px; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.28); }
+  .sw.on { background: #34c759; }
+  .sw.on i { left: 13px; }
+  svg.ic { display: block; flex: none; }
+  .accent { color: var(--accent); }
+  .tabs { display: flex; gap: 0; margin: 0 20px 8px; padding: 3px; background: var(--panel); border: 1px solid var(--border); border-radius: 9px; }
+  .tabs span { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 32px; font-size: 13px; border-radius: 6px; color: var(--ink); }
+  .tabs span + span { box-shadow: -1px 0 0 var(--border); }
+  .tabs .on { background: var(--selected); color: var(--selected-ink); font-weight: 650; box-shadow: none; }
+  .back { display: flex; align-items: center; gap: 10px; padding: 14px 16px 8px; }
+  .back .link { display: inline-flex; align-items: center; gap: 4px; color: var(--ink); font-size: 13px; }
+  .set { display: flex; align-items: center; gap: 12px; padding: 4px 20px; font-size: 13px; }
+  .note { margin: 2px 20px 8px; color: var(--muted); font-size: 12px; line-height: 1.35; max-width: 720px; }
+  .fieldrow { display: flex; align-items: center; gap: 12px; padding: 4px 20px; font-size: 13px; }
+  .fieldrow .k { width: 120px; flex: none; }
+  .field { height: 22px; min-width: 180px; padding: 0 6px; border-radius: 5px; border: 1px solid #c9c3b8; background: #fff; font: 13px ui-monospace, "SF Mono", Menlo, monospace; color: var(--ink); }
+  .mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; }
+  .menu-stage { width: 280px; padding: 6px 10px 14px; background: #e8e6e3; }
+  .menubar { height: 24px; display: flex; align-items: center; }
+  .status-item { width: 28px; height: 22px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.08); border-radius: 4px; }
+  .menu { margin-top: 4px; width: 248px; background: rgba(255,255,255,.94); border: 1px solid rgba(0,0,0,.12); border-radius: 6px; padding: 5px 0; box-shadow: 0 10px 28px rgba(0,0,0,.18); }
+  .menu div { padding: 2px 14px 3px; font-size: 13px; line-height: 16px; }
+  .menu .dim { color: rgba(0,0,0,.42); }
+  .menu hr { border: 0; border-top: 1px solid rgba(0,0,0,.12); margin: 5px 0; }
+  .setup { width: 560px; }
+  .capsule { display: flex; height: 20px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(112,102,91,.35); }
+  .capsule span { display: flex; align-items: center; justify-content: center; min-width: 28px; padding: 0 8px; font-size: 11px; font-weight: 650; background: var(--selected); color: var(--selected-ink); }
+  .capsule .now { background: var(--accent); color: var(--on-accent); padding: 0 10px; }
+  .capsule i { width: 2px; background: var(--canvas); }
+  .setup-copy { display: flex; gap: 10px; align-items: flex-start; padding: 8px 20px 0; }
+  .mark { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: var(--accent); flex: none; }
+  .setup-copy p { margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.35; }
+  .example { padding: 8px 20px 0 66px; }
+  .setup-actions { display: flex; align-items: center; gap: 8px; padding: 18px 20px 16px; }
+</style>
+</head>
+<body>
+<div class="stage">
+
+<section id="containers" class="win" style="width:1080px">
+  <div class="titlebar"><div class="lights"><i></i><i></i><i></i></div></div>
+  <div class="status">
+    <span class="dot"></span><span class="state">Connected</span>
+    <button class="btn"><svg class="ic" width="8" height="9" viewBox="0 0 8 9"><rect width="2.4" height="9" rx=".4" fill="currentColor"/><rect x="5.6" width="2.4" height="9" rx=".4" fill="currentColor"/></svg>Pause</button>
+    <span class="vrule"></span>
+    <span class="muted">4 containers</span>
+    <span class="muted">4 routes ready</span>
+    <span class="grow"></span>
+    <button class="btn"><svg class="ic" width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6.8 1.1h-1.6l-.3 1.3a3.6 3.6 0 0 0-.9.5L2.6 2.4l-1.1 1.1 1.1 1.1a3.6 3.6 0 0 0-.1 1.1c0 .2 0 .4.1.6L1.5 7.4l1.1 1.1 1.4-.6c.3.2.6.4.9.5l.3 1.3h1.6l.3-1.3c.3-.1.6-.3.9-.5l1.4.6 1.1-1.1-1.1-1.1c.1-.2.1-.4.1-.6s0-.4-.1-.6l1.1-1.1-1.1-1.1-1.4.5a3.6 3.6 0 0 0-.9-.5l-.3-1.2ZM6 7.5A1.5 1.5 0 1 1 6 4.5a1.5 1.5 0 0 1 0 3Z"/></svg>Settings</button>
+  </div>
+  <div class="panel">
+    <div class="head">
+      <h1>Containers</h1>
+      <span class="grow"></span>
+      <div class="search">Search</div>
+      <button class="btn">Refresh</button>
+    </div>
+    <div class="hair"></div>
+    <div class="stack">
+      <svg class="ic" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 3.5 5 7 8.5 3.5"/></svg>
+      <svg class="ic" width="16" height="16" viewBox="0 0 18 18"><rect x="0.6" y="8.2" width="9" height="8" rx="1.5" fill="#bd410d" opacity=".38" stroke="#f1ece4" stroke-width="1"/><rect x="4" y="4.6" width="9" height="8" rx="1.5" fill="#bd410d" opacity=".66" stroke="#f1ece4" stroke-width="1"/><rect x="7.4" y="1" width="9" height="8" rx="1.5" fill="#bd410d" stroke="#f1ece4" stroke-width="1"/></svg>
+      <strong>shop</strong>
+      <span class="grow"></span>
+      <span class="muted">In hostname</span>
+      <span class="sw"><i></i></span>
+      <span class="muted" style="width:24px;text-align:right">3</span>
+    </div>
+    <div class="row">
+      <svg class="ic accent" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1.4 14.2 4.6v6.8L8 14.6 1.8 11.4V4.6Z"/><path d="M8 8.2 14.2 4.8M8 8.2 1.8 4.8M8 8.2v6.4" fill="none" stroke="#fffdf9" stroke-width="1" stroke-linejoin="round"/></svg>
+      <div class="name"><strong>shop-web</strong><div class="dns"><input value="shop-web" readonly><span>.mesh.test</span></div></div>
+      <span class="grow"></span>
+      <button class="btn wide"><svg class="ic" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="6" cy="6" r="4.2"/><path d="M3.1 3.1 8.9 8.9"/></svg>Disable</button>
+      <button class="btn icon" aria-label="Copy"><svg class="ic" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.1"><rect x="4.1" y="1.4" width="6.4" height="7.4" rx="1"/><path d="M3.1 3.2H2.3A1 1 0 0 0 1.3 4.2v5.6a1 1 0 0 0 1 1H7.8"/></svg></button>
+    </div>
+    <div class="row">
+      <svg class="ic accent" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1.4 14.2 4.6v6.8L8 14.6 1.8 11.4V4.6Z"/><path d="M8 8.2 14.2 4.8M8 8.2 1.8 4.8M8 8.2v6.4" fill="none" stroke="#fffdf9" stroke-width="1" stroke-linejoin="round"/></svg>
+      <div class="name"><strong>shop-api</strong><div class="dns"><input value="shop-api" readonly><span>.mesh.test</span></div></div>
+      <span class="grow"></span>
+      <button class="btn wide"><svg class="ic" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="6" cy="6" r="4.2"/><path d="M3.1 3.1 8.9 8.9"/></svg>Disable</button>
+      <button class="btn icon" aria-label="Copy"><svg class="ic" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.1"><rect x="4.1" y="1.4" width="6.4" height="7.4" rx="1"/><path d="M3.1 3.2H2.3A1 1 0 0 0 1.3 4.2v5.6a1 1 0 0 0 1 1H7.8"/></svg></button>
+    </div>
+    <div class="row">
+      <svg class="ic accent" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1.4 14.2 4.6v6.8L8 14.6 1.8 11.4V4.6Z"/><path d="M8 8.2 14.2 4.8M8 8.2 1.8 4.8M8 8.2v6.4" fill="none" stroke="#fffdf9" stroke-width="1" stroke-linejoin="round"/></svg>
+      <div class="name"><strong>shop-db</strong><div class="dns"><input value="shop-db" readonly><span>.mesh.test</span></div></div>
+      <span class="grow"></span>
+      <button class="btn wide"><svg class="ic" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="6" cy="6" r="4.2"/><path d="M3.1 3.1 8.9 8.9"/></svg>Disable</button>
+      <button class="btn icon" aria-label="Copy"><svg class="ic" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.1"><rect x="4.1" y="1.4" width="6.4" height="7.4" rx="1"/><path d="M3.1 3.2H2.3A1 1 0 0 0 1.3 4.2v5.6a1 1 0 0 0 1 1H7.8"/></svg></button>
+    </div>
+    <div class="row loose">
+      <svg class="ic accent" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1.4 14.2 4.6v6.8L8 14.6 1.8 11.4V4.6Z"/><path d="M8 8.2 14.2 4.8M8 8.2 1.8 4.8M8 8.2v6.4" fill="none" stroke="#fffdf9" stroke-width="1" stroke-linejoin="round"/></svg>
+      <div class="name"><strong>worker</strong><div class="dns"><input value="worker" readonly><span>.mesh.test</span></div></div>
+      <span class="grow"></span>
+      <button class="btn wide"><svg class="ic" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="6" cy="6" r="4.2"/><path d="M3.1 3.1 8.9 8.9"/></svg>Disable</button>
+      <button class="btn icon" aria-label="Copy"><svg class="ic" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.1"><rect x="4.1" y="1.4" width="6.4" height="7.4" rx="1"/><path d="M3.1 3.2H2.3A1 1 0 0 0 1.3 4.2v5.6a1 1 0 0 0 1 1H7.8"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<section id="settings" class="win" style="width:1080px">
+  <div class="titlebar"><div class="lights"><i></i><i></i><i></i></div></div>
+  <div class="status">
+    <span class="dot"></span><span class="state">Connected</span>
+    <button class="btn">Pause</button>
+    <span class="vrule"></span>
+    <span class="muted">4 containers</span>
+    <span class="muted">4 routes ready</span>
+    <span class="grow"></span>
+    <button class="btn">Settings</button>
+  </div>
+  <div class="panel">
+    <div class="back"><span class="link"><svg class="ic" width="8" height="12" viewBox="0 0 8 12"><path d="M6.4 1.2 1.6 6l4.8 4.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Containers</span><h1>Settings</h1></div>
+    <div class="tabs">
+      <span class="on">General</span>
+      <span>Docker</span>
+      <span>Names</span>
+      <span>Connection checks</span>
+      <span>Logs</span>
+    </div>
+    <div class="set"><span>Open at login</span><span class="grow"></span><span class="sw"><i></i></span></div>
+    <div class="set"><span>Start hidden</span><span class="grow"></span><span class="sw on"><i></i></span></div>
+    <p class="note">Open at login brings ContainerMesh back and reconnects when networking was left on. Start hidden leaves it in the menu bar until the window is opened.</p>
+    <div class="set"><span>Show in menu bar</span><span class="grow"></span><span class="sw on"><i></i></span></div>
+    <div class="set"><span>Hide Dock icon</span><span class="grow"></span><span class="sw"><i></i></span></div>
+    <p class="note">The Dock icon stays while this window is open. With Hide Dock icon on, closing the window removes it. The menu bar icon remains available.</p>
+  </div>
+</section>
+
+<section id="names" class="win" style="width:1080px">
+  <div class="titlebar"><div class="lights"><i></i><i></i><i></i></div></div>
+  <div class="status">
+    <span class="dot"></span><span class="state">Connected</span>
+    <button class="btn">Pause</button>
+    <span class="vrule"></span>
+    <span class="muted">4 containers</span>
+    <span class="muted">4 routes ready</span>
+    <span class="grow"></span>
+    <button class="btn">Settings</button>
+  </div>
+  <div class="panel">
+    <div class="back"><span class="link"><svg class="ic" width="8" height="12" viewBox="0 0 8 12"><path d="M6.4 1.2 1.6 6l4.8 4.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Containers</span><h1>Settings</h1></div>
+    <div class="tabs">
+      <span>General</span><span>Docker</span><span class="on">Names</span><span>Connection checks</span><span>Logs</span>
+    </div>
+    <div class="fieldrow"><span class="k">Default domain</span><input class="field" value="mesh.test" readonly></div>
+    <p class="note">ContainerMesh reconnects when this domain changes.</p>
+    <p class="note">A stack or container can use this domain, or a name under it. Each stack can join or leave the hostname from Containers.</p>
+    <div class="set"><span>Include Compose stack in hostname</span><span class="grow"></span><span class="sw"><i></i></span></div>
+    <div class="fieldrow"><span class="k">Example</span><span class="mono">container.mesh.test</span></div>
+    <div style="height:12px"></div>
+  </div>
+</section>
+
+<section id="menu" class="menu-stage">
+  <div class="menubar">
+    <div class="status-item" aria-hidden="true">
+      <svg width="16" height="11" viewBox="0 0 620 400" fill="#1d1d1f"><path d="M 0.000 44.000 Q 0.000 0.000 44.000 0.000 L 242.000 0.000 Q 250.000 0.000 250.000 8.000 L 250.000 112.000 Q 250.000 120.000 242.000 120.000 L 132.000 120.000 Q 120.000 120.000 120.000 132.000 L 120.000 268.000 Q 120.000 280.000 132.000 280.000 L 242.000 280.000 Q 250.000 280.000 250.000 288.000 L 250.000 392.000 Q 250.000 400.000 242.000 400.000 L 44.000 400.000 Q 0.000 400.000 0.000 356.000 L 0.000 44.000 Z"/><path d="M 278.000 8.000 Q 278.000 0.000 286.000 0.000 L 372.000 0.000 Q 382.000 0.000 388.585 7.526 L 431.415 56.474 Q 438.000 64.000 444.585 56.474 L 487.415 7.526 Q 494.000 0.000 504.000 0.000 L 592.000 0.000 Q 620.000 0.000 620.000 28.000 L 620.000 372.000 Q 620.000 400.000 592.000 400.000 L 494.000 400.000 Q 486.000 400.000 486.000 392.000 L 486.000 238.000 Q 486.000 230.000 478.000 230.000 L 420.000 230.000 Q 412.000 230.000 412.000 238.000 L 412.000 392.000 Q 412.000 400.000 404.000 400.000 L 286.000 400.000 Q 278.000 400.000 278.000 392.000 L 278.000 262.000 Q 278.000 254.000 270.000 254.000 L 226.000 254.000 Q 218.000 254.000 218.000 246.000 L 218.000 154.000 Q 218.000 146.000 226.000 146.000 L 270.000 146.000 Q 278.000 146.000 278.000 138.000 L 278.000 8.000 Z"/></svg>
+    </div>
+  </div>
+  <div class="menu">
+    <div class="dim">ContainerMesh · Connected</div>
+    <div class="dim">4 containers with ready routes</div>
+    <hr>
+    <div>Open ContainerMesh</div>
+    <div>Settings</div>
+    <div>Pause networking</div>
+    <div>Connection checks</div>
+    <div>View logs</div>
+    <hr>
+    <div>Quit ContainerMesh</div>
+  </div>
+</section>
+
+<section id="setup" class="win setup">
+  <div class="titlebar">
+    <div class="lights"><i></i><i></i><i></i></div>
+    <div class="capsule"><span>✓</span><i></i><span>✓</span><i></i><span class="now">Connect</span></div>
+  </div>
+  <div class="setup-copy">
+    <div class="mark"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="4" cy="16" r="1.6" fill="currentColor"/><circle cx="11" cy="5" r="1.6" fill="currentColor"/><circle cx="18" cy="16" r="1.6" fill="currentColor"/><path d="M5.4 14.8 9.6 6.6M12.4 6.6l4.2 8.2M6 16h10" stroke-dasharray="1.2 1.6"/></svg></div>
+    <p>ContainerMesh will connect on launch and keep names up to date until you pause it.</p>
+  </div>
+  <div class="example mono">container.mesh.test</div>
+  <div class="setup-actions">
+    <button class="btn"><svg class="ic" width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9.2 5.5A3.7 3.7 0 1 1 6.4 2.1"/><path d="M9.4 1.6v2.3H7.1"/></svg>Check again</button>
+    <button class="primary"><svg class="ic" width="10" height="12" viewBox="0 0 10 12" fill="currentColor"><path d="M6.2.6 1 6.6h3.2L3.6 11.4 9.2 5H5.8Z"/></svg>Enable automatic networking</button>
+  </div>
+</section>
+
+</div>
+<script>
+  const shot = new URLSearchParams(location.search).get("shot");
+  if (shot) {
+    document.body.classList.add("shot");
+    const node = document.getElementById(shot);
+    if (node) node.classList.add("only");
+  }
+</script>
+</body>
+</html>
