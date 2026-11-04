@@ -1,0 +1,43 @@
+name: Product bug
+description: A problem in the ContainerMesh macOS app
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Public issues are for product bugs. Security reports stay private. Use the security policy instead of this form.
+
+        Leave out passwords, tokens, and private host details. Logs can contain local paths.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, and what you expected instead.
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      placeholder: macOS 26.0
+    validations:
+      required: true
+  - type: input
+    id: app
+    attributes:
+      label: ContainerMesh version
+      description: The version shown in About ContainerMesh.
+    validations:
+      required: true
+  - type: input
+    id: docker
+    attributes:
+      label: Docker Desktop version
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: Optional. Do not include secrets or private host details.

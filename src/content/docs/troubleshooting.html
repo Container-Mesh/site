@@ -1,0 +1,20 @@
+<!--
+title: Troubleshooting
+description: What to check when ContainerMesh is still in Setup, paused, or a name does not answer.
+-->
+<h1>Troubleshooting</h1>
+<h2>Docker is not running</h2>
+<p>Setup stays on Docker until the check passes. Choose <strong>Open Docker Desktop</strong>, wait until Docker is up, then <strong>Check again</strong>. Opening Docker does not opt in.</p>
+<h2>A prerequisite is not ready</h2>
+<p>Containers stays behind Setup. Connection checks names the failing item. Settings and logs remain available. Networking starts only after the checks are ready and you choose <strong>Enable automatic networking</strong>.</p>
+<h2>A name does not answer</h2>
+<ul>
+  <li>The container is running, and its name is published rather than <strong>DNS off</strong>.</li>
+  <li>The connection is not paused, and the row is not still <strong>Waiting</strong>.</li>
+  <li>You are using the port the application listens on. The name does not add TLS and does not imply a different port.</li>
+  <li>The application accepts connections on its container address. An application bound only to its own loopback address will not answer.</li>
+</ul>
+<h2>A name or domain is rejected</h2>
+<p>Use a lowercase domain such as <span class="host">mesh.test</span>. A label uses letters, numbers, and hyphens. The name field is that label, kept under the current domain.</p>
+<h2>The list is empty</h2>
+<p>The list is running containers on the selected Docker context. Start a container in Docker Desktop. While the connection is still being prepared, the window says so instead of showing an empty result as a finished list.</p>

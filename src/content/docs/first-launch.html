@@ -1,0 +1,13 @@
+<!--
+title: First launch
+description: How ContainerMesh checks prerequisites and waits for Enable automatic networking.
+-->
+<h1>First launch</h1>
+<p>The first time ContainerMesh opens, Setup stays in front of Containers. The checks are read-only until you opt in. A prerequisite that is already satisfied does not count as consent to connect.</p>
+<h2>Docker Desktop</h2>
+<p>ContainerMesh works beside Docker Desktop. Start Docker, then choose <strong>Check again</strong>. If Docker is not running, <strong>Open Docker Desktop</strong> starts Docker Desktop. That button does not enable ContainerMesh networking.</p>
+<h2>The other prerequisites</h2>
+<p>Setup shows the remaining checks before the opt-in. Continue when a check is ready. <strong>Cancel</strong> stops the step that is in progress and leaves networking off. Connection checks, in Settings, show the same items while Setup is unfinished.</p>
+<h2>Enable automatic networking</h2>
+<p>When the checks are ready, choose <strong>Enable automatic networking</strong>. That is the opt-in. Until then, Containers stays behind Setup. Settings, connection checks, and logs remain available.</p>
+<p>After that choice, ContainerMesh connects when it launches, and again after Docker or a prerequisite recovers, until you pause it. Later launches use the saved configuration. An edit you have not finished in Settings is not applied on its own.</p>

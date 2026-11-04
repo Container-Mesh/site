@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ContainerMesh documentation</title>
+<meta name="description" content="What the ContainerMesh macOS app does, and where to read about names, setup, and the connection.">
+<link rel="canonical" href="https://www.containermesh.dev/docs/">
+<link rel="icon" href="/assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#B8360B">
+<meta property="og:title" content="ContainerMesh documentation">
+<meta property="og:description" content="What the ContainerMesh macOS app does, and where to read about names, setup, and the connection.">
+<meta property="og:url" content="https://www.containermesh.dev/docs/">
+<meta property="og:image" content="https://www.containermesh.dev/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/host.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="brand" data-app-href="/" href="/"><img src="/assets/app-icon.png" width="36" height="36" alt=""><span>ContainerMesh</span></a>
+  <nav aria-label="Site">
+    <a data-docs-href="/docs/" href="/docs/" aria-current="page">Documentation</a>
+    <a href="https://github.com/Container-Mesh/site/issues/new?template=bug_report.yml">Report a bug</a>
+  </nav>
+</header>
+<main id="content" class="wrap">
+<div class="doc"><nav class="side" aria-label="Documentation"><a data-docs-href="/docs/" href="/docs/" aria-current="page">Overview</a><a data-docs-href="/docs/first-launch/" href="/docs/first-launch/">First launch</a><a data-docs-href="/docs/names/" href="/docs/names/">Names</a><a data-docs-href="/docs/containers/" href="/docs/containers/">Containers</a><a data-docs-href="/docs/connection/" href="/docs/connection/">Connection</a><a data-docs-href="/docs/settings/" href="/docs/settings/">Settings</a><a data-docs-href="/docs/troubleshooting/" href="/docs/troubleshooting/">Troubleshooting</a><a data-docs-href="/docs/support/" href="/docs/support/">Bugs and security</a></nav><article class="prose"><h1>Documentation</h1>
+<p>ContainerMesh is a macOS menu-bar app for Docker Desktop. It discovers running containers and connects to them through ContainerTunnel. Names are optional. Networking starts only after you opt in.</p>
+<p>The window lists containers. The menu bar remains after you close the window. From either place you can pause or resume, and open Settings, connection checks, and logs.</p>
+<h2>What you set up once</h2>
+<p>On first launch, Setup checks prerequisites. Containers stays behind Setup until those checks pass and you choose <strong>Enable automatic networking</strong>. Settings, connection checks, and logs stay available during Setup.</p>
+<p><a data-docs-href="/docs/first-launch/" href="/docs/first-launch/">First launch</a> walks through that choice. <a data-docs-href="/docs/names/" href="/docs/names/">Names</a> covers <span class="host">mesh.test</span> and Compose-stack names.</p>
+<h2>What ContainerMesh leaves alone</h2>
+<ul>
+  <li>Compose files stay as they are. Nothing here asks you to add a network or a port mapping.</li>
+  <li>There is no port list. You use the port the application already listens on.</li>
+  <li>A published name does not add TLS, and it does not change which host name an application accepts.</li>
+</ul>
+<div class="note">
+  <p>These pages describe how to use ContainerMesh. They do not include the application source. Product bugs belong in <a href="https://github.com/Container-Mesh/site/issues/new?template=bug_report.yml">GitHub Issues</a>. Security reports stay private.</p>
+</div></article></div>
+</main>
+<footer class="site-footer">
+  <p>ContainerMesh · <a href="https://www.containermesh.app/">www.containermesh.app</a> · <a href="https://www.containermesh.dev/docs/">www.containermesh.dev</a></p>
+  <p><a href="https://github.com/Container-Mesh/site/security/policy">Security reports stay private</a>. Docker and macOS are trademarks of their owners.</p>
+</footer>
+</body>
+</html>

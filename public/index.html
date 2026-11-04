@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ContainerMesh</title>
+<meta name="description" content="ContainerMesh is a macOS menu-bar app that discovers Docker containers and connects to them through ContainerTunnel.">
+<link rel="canonical" href="https://www.containermesh.app/">
+<link rel="icon" href="/assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#B8360B">
+<meta property="og:title" content="ContainerMesh">
+<meta property="og:description" content="ContainerMesh is a macOS menu-bar app that discovers Docker containers and connects to them through ContainerTunnel.">
+<meta property="og:url" content="https://www.containermesh.app/">
+<meta property="og:image" content="https://www.containermesh.app/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/host.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ContainerMesh","applicationCategory":"DeveloperApplication","operatingSystem":"macOS","url":"https://www.containermesh.app/","description":"A macOS menu-bar app that discovers Docker containers and connects to them through ContainerTunnel."}
+</script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="brand" data-app-href="/" href="/"><img src="/assets/app-icon.png" width="36" height="36" alt=""><span>ContainerMesh</span></a>
+  <nav aria-label="Site">
+    <a data-docs-href="/docs/" href="/docs/">Documentation</a>
+    <a href="https://github.com/Container-Mesh/site/issues/new?template=bug_report.yml">Report a bug</a>
+  </nav>
+</header>
+<main id="content" class="wrap">
+<section class="hero">
+  <div>
+    <p class="eyebrow">macOS menu bar</p>
+    <h1>Local names for the containers already running.</h1>
+    <p class="lede">ContainerMesh discovers Docker containers and connects to them through ContainerTunnel. You choose which names to publish. Networking stays off until you explicitly opt in.</p>
+    <div class="actions">
+      <a class="button" data-docs-href="/docs/" href="/docs/">Read the docs</a>
+      <a class="button quiet" data-docs-href="/docs/first-launch/" href="/docs/first-launch/">First launch</a>
+    </div>
+  </div>
+  <img class="hero-icon" src="/assets/app-icon.png" width="512" height="512" alt="ContainerMesh app icon: an ivory C and M joined together on an orange square.">
+</section>
+<section class="points" aria-label="What ContainerMesh does">
+  <article>
+    <h2>Discover</h2>
+    <p>Running containers appear on their own, including containers that are not in a Compose stack. There is no project to select and no port list to keep.</p>
+  </article>
+  <article>
+    <h2>Name</h2>
+    <p>The usual name is the container plus <span class="host">mesh.test</span>. A Compose stack can be included. Any container can stay unpublished.</p>
+  </article>
+  <article>
+    <h2>Connect</h2>
+    <p>After you choose <strong>Enable automatic networking</strong>, ContainerMesh connects when it opens, and until you pause it.</p>
+  </article>
+</section>
+<section class="split">
+  <div class="name-card">
+    <h2>Two names for the same container</h2>
+    <dl>
+      <dt>Default</dt>
+      <dd>shop-web-1.mesh.test</dd>
+      <dt>With the Compose stack</dt>
+      <dd>shop-web-1.shop.mesh.test</dd>
+    </dl>
+    <p>Use the port the application already listens on. Port 80 is <span class="host">http://shop-web-1.mesh.test/</span>. Port 5432 is <span class="host">db.mesh.test:5432</span>.</p>
+  </div>
+  <div class="name-card">
+    <h2>Where it lives</h2>
+    <p>The window lists containers. Closing it leaves ContainerMesh in the menu bar, where you can pause, resume, and open the window again.</p>
+    <p>The Snapfit mark is the joined C and M. Orange runs from <span class="host">#FF941F</span> to <span class="host">#B8360B</span>. The mark itself is ivory, <span class="host">#FFF4DD</span>.</p>
+  </div>
+</section>
+<section class="choice">
+  <h2>The connection is a choice.</h2>
+  <p>Opening Docker Desktop does not turn networking on. Finishing the prerequisite check does not turn it on either. Automatic connection starts only when you choose <strong>Enable automatic networking</strong>.</p>
+  <p>Pause keeps the connection off across later launches. Quit disconnects for this session and leaves that saved choice for the next time the app opens.</p>
+  <p><a data-docs-href="/docs/connection/" href="/docs/connection/">Pause, resume, and quit</a></p>
+</section>
+</main>
+<footer class="site-footer">
+  <p>ContainerMesh · <a href="https://www.containermesh.app/">www.containermesh.app</a> · <a href="https://www.containermesh.dev/docs/">www.containermesh.dev</a></p>
+  <p><a href="https://github.com/Container-Mesh/site/security/policy">Security reports stay private</a>. Docker and macOS are trademarks of their owners.</p>
+</footer>
+</body>
+</html>

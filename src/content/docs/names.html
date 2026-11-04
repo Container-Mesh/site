@@ -1,0 +1,26 @@
+<!--
+title: Names
+description: Default mesh.test names, optional Compose-stack names, and how to publish or edit a container name.
+-->
+<h1>Names</h1>
+<p>Names are DNS names for containers on this Mac. The default domain is <span class="host">mesh.test</span>. Change it in Settings, under Names. Use a lowercase domain, such as <span class="host">mesh.test</span>.</p>
+<p>ContainerMesh turns a container or stack name into a DNS label: lowercase letters, numbers, and hyphens. Underscores become hyphens. Each container keeps its own label, including a Compose replica. A container that is not in a stack stays a single label.</p>
+<h2>Compose stack</h2>
+<p><strong>Include Compose stack in hostname</strong> adds the stack between the container and the domain. Each stack also has its own <strong>In hostname</strong> switch. That switch follows the setting until you change the stack.</p>
+<table>
+  <thead>
+    <tr><th>Choice</th><th>Name</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Default</td><td><span class="host">shop-web-1.mesh.test</span></td></tr>
+    <tr><td>Stack included</td><td><span class="host">shop-web-1.shop.mesh.test</span></td></tr>
+    <tr><td>Standalone container</td><td><span class="host">db.mesh.test</span></td></tr>
+  </tbody>
+</table>
+<h2>Publish, edit, or leave it off</h2>
+<p>Each container can enable or disable its name. A disabled name shows <strong>Not published</strong>.</p>
+<p>The published row edits the first label. The rest of the name, including the domain, stays put. A label you changed is marked <strong>Custom</strong>. <strong>Revert</strong> restores the automatic label. Typing a dotted name is rejected, and the field keeps the name under the current domain.</p>
+<p>The same kind of edit is available for a stack label when that stack is included in the hostname.</p>
+<p>Changing the domain, the stack option, or a published label reconnects a running connection so the names follow the change.</p>
+<h2>What a name does not do</h2>
+<p>The name does not choose the application port, issue a certificate, or configure which host header the application accepts. Port 80 is <span class="host">http://shop-web-1.mesh.test/</span>. A database on 5432 is <span class="host">db.mesh.test:5432</span>. Publishing a port in Docker is not required for this connection.</p>

@@ -1,0 +1,22 @@
+<!--
+title: Connection
+description: Pause, resume, quit, and when ContainerMesh connects automatically.
+-->
+<h1>Connection</h1>
+<p>Automatic connection exists only after <strong>Enable automatic networking</strong>. Before that choice, pause and resume are not how you start.</p>
+<h2>Pause and resume</h2>
+<p>The window shows <strong>Pause</strong> and <strong>Resume</strong>. The menu bar shows <strong>Pause networking</strong> and <strong>Resume networking</strong>. Pause stops automatic reconnection and keeps that choice the next time ContainerMesh opens, including an open-at-login launch. Resume connects again once the prerequisites are ready.</p>
+<h2>The menu bar</h2>
+<p>The menu shows the connection state, then:</p>
+<ul>
+  <li><strong>Open ContainerMesh</strong></li>
+  <li><strong>Settings</strong></li>
+  <li><strong>Open setup</strong>, while Setup still applies</li>
+  <li><strong>Pause networking</strong> or <strong>Resume networking</strong></li>
+  <li><strong>Connection checks</strong></li>
+  <li><strong>View logs</strong></li>
+  <li><strong>Quit ContainerMesh</strong></li>
+</ul>
+<p>Closing the window does not quit. The menu-bar icon keeps the app available. Quit disconnects for this session. The saved choice is still what the next launch follows: a paused app stays paused, and an app you left connected connects again.</p>
+<h2>After an interruption</h2>
+<p>Once you have opted in, ContainerMesh connects at launch. If Docker or a prerequisite drops, it tries again while the saved choice is still to stay connected. It uses the saved configuration, not an unfinished edit in Settings.</p>

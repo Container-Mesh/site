@@ -1,0 +1,19 @@
+<!--
+title: ContainerMesh documentation
+description: What the ContainerMesh macOS app does, and where to read about names, setup, and the connection.
+-->
+<h1>Documentation</h1>
+<p>ContainerMesh is a macOS menu-bar app for Docker Desktop. It discovers running containers and connects to them through ContainerTunnel. Names are optional. Networking starts only after you opt in.</p>
+<p>The window lists containers. The menu bar remains after you close the window. From either place you can pause or resume, and open Settings, connection checks, and logs.</p>
+<h2>What you set up once</h2>
+<p>On first launch, Setup checks prerequisites. Containers stays behind Setup until those checks pass and you choose <strong>Enable automatic networking</strong>. Settings, connection checks, and logs stay available during Setup.</p>
+<p><a data-docs-href="/docs/first-launch/" href="/docs/first-launch/">First launch</a> walks through that choice. <a data-docs-href="/docs/names/" href="/docs/names/">Names</a> covers <span class="host">mesh.test</span> and Compose-stack names.</p>
+<h2>What ContainerMesh leaves alone</h2>
+<ul>
+  <li>Compose files stay as they are. Nothing here asks you to add a network or a port mapping.</li>
+  <li>There is no port list. You use the port the application already listens on.</li>
+  <li>A published name does not add TLS, and it does not change which host name an application accepts.</li>
+</ul>
+<div class="note">
+  <p>These pages describe how to use ContainerMesh. They do not include the application source. Product bugs belong in <a href="https://github.com/Container-Mesh/site/issues/new?template=bug_report.yml">GitHub Issues</a>. Security reports stay private.</p>
+</div>

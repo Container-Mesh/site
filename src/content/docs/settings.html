@@ -1,0 +1,19 @@
+<!--
+title: Settings
+description: Login, menu bar, Docker context, names, connection checks, and logs in ContainerMesh.
+-->
+<h1>Settings</h1>
+<p>Settings are for the macOS user who is logged in. The app menu and the menu bar both open them. General, Docker, Names, Connection checks, and Logs are separate panes.</p>
+<h2>General</h2>
+<ul>
+  <li><strong>Open at login</strong> brings ContainerMesh back and reconnects when networking was left on.</li>
+  <li><strong>Start hidden</strong> leaves a login launch in the menu bar until you open the window. It is on by default. It does nothing when the menu bar icon is off, and it does not hide an ordinary launch from the Finder or Dock.</li>
+  <li><strong>Show in menu bar</strong> and <strong>Hide Dock icon</strong> keep at least one way to open the app. The Dock icon stays while the window is open. With Hide Dock icon on, closing the window removes it, and the menu bar icon remains.</li>
+</ul>
+<p>If macOS asks, allow ContainerMesh in System Settings, under General, Login Items.</p>
+<h2>Docker</h2>
+<p>This is the Docker context ContainerMesh uses. The usual Docker Desktop context is <span class="host">desktop-linux</span>. Changing the context reconnects. ContainerMesh does not change your global Docker context.</p>
+<h2>Names</h2>
+<p>The default domain and <strong>Include Compose stack in hostname</strong> live here. An example of the current form is shown beside the switch. See <a data-docs-href="/docs/names/" href="/docs/names/">Names</a>.</p>
+<h2>Connection checks and logs</h2>
+<p>Connection checks lists the prerequisite results. Logs are for this run of the app. They stay in memory until you quit, and Docker errors may include local paths. Read a log before you put any of it in a public bug report.</p>

@@ -1,0 +1,12 @@
+name: Documentation
+description: A correction to the public site or documentation
+title: "[Docs] "
+labels: ["documentation"]
+body:
+  - type: textarea
+    id: page
+    attributes:
+      label: Which page
+      description: The documentation or product-home page, and what it should say.
+    validations:
+      required: true

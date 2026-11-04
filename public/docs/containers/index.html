@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Containers</title>
+<meta name="description" content="How the ContainerMesh window lists running Docker containers and their names.">
+<link rel="canonical" href="https://www.containermesh.dev/docs/containers/">
+<link rel="icon" href="/assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#B8360B">
+<meta property="og:title" content="Containers">
+<meta property="og:description" content="How the ContainerMesh window lists running Docker containers and their names.">
+<meta property="og:url" content="https://www.containermesh.dev/docs/containers/">
+<meta property="og:image" content="https://www.containermesh.dev/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/host.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="brand" data-app-href="/" href="/"><img src="/assets/app-icon.png" width="36" height="36" alt=""><span>ContainerMesh</span></a>
+  <nav aria-label="Site">
+    <a data-docs-href="/docs/" href="/docs/" aria-current="page">Documentation</a>
+    <a href="https://github.com/Container-Mesh/site/issues/new?template=bug_report.yml">Report a bug</a>
+  </nav>
+</header>
+<main id="content" class="wrap">
+<div class="doc"><nav class="side" aria-label="Documentation"><a data-docs-href="/docs/" href="/docs/">Overview</a><a data-docs-href="/docs/first-launch/" href="/docs/first-launch/">First launch</a><a data-docs-href="/docs/names/" href="/docs/names/">Names</a><a data-docs-href="/docs/containers/" href="/docs/containers/" aria-current="page">Containers</a><a data-docs-href="/docs/connection/" href="/docs/connection/">Connection</a><a data-docs-href="/docs/settings/" href="/docs/settings/">Settings</a><a data-docs-href="/docs/troubleshooting/" href="/docs/troubleshooting/">Troubleshooting</a><a data-docs-href="/docs/support/" href="/docs/support/">Bugs and security</a></nav><article class="prose"><h1>Containers</h1>
+<p>The window lists containers that are running. Start one in Docker Desktop and ContainerMesh finds it. You do not pick a Compose project first.</p>
+<p>Search matches a container, a stack, or a published name, and it ignores case. Compose stacks can be collapsed. While a search is active, matching stacks stay open.</p>
+<h2>Each row</h2>
+<p>A published row shows the name and <strong>Copy</strong>. Copy uses the published name when the name is on, and the container name when it is off. <strong>Disable</strong> unpublishes that container. <strong>Enable</strong> publishes it again.</p>
+<p>The status line counts the containers in the list and how many are ready. Ready means the connection can use that container. It is not a health check of the application inside it.</p>
+<ul>
+  <li><strong>Waiting</strong> means the name is published and the connection is still coming up.</li>
+  <li><strong>Paused</strong> means the name is published and networking is paused.</li>
+  <li><strong>DNS off</strong> means the name is not published.</li>
+</ul>
+<p>An empty list says there are no running containers, or that the connection is still being prepared. Start a container in Docker Desktop and the list picks it up.</p></article></div>
+</main>
+<footer class="site-footer">
+  <p>ContainerMesh · <a href="https://www.containermesh.app/">www.containermesh.app</a> · <a href="https://www.containermesh.dev/docs/">www.containermesh.dev</a></p>
+  <p><a href="https://github.com/Container-Mesh/site/security/policy">Security reports stay private</a>. Docker and macOS are trademarks of their owners.</p>
+</footer>
+</body>
+</html>

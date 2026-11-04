@@ -1,0 +1,22 @@
+Proprietary License
+
+Copyright (c) 2026 ContainerMesh contributors
+All rights reserved.
+
+This repository contains the public ContainerMesh website and documentation.
+It does not contain the ContainerMesh application.
+
+The published pages may be viewed at www.containermesh.app and
+www.containermesh.dev. No other permission is granted to use, copy, modify,
+distribute, sublicense, or sell these materials or the Snapfit mark, except
+under a separate written agreement with the applicable rights holder.
+Repository access alone grants no such permission.
+
+Third-party marks and components retain their respective rights. They are not
+relicensed by this document. Docker and macOS belong to their owners.
+
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, THESE MATERIALS ARE PROVIDED "AS IS",
+WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. THE RIGHTS HOLDERS ARE
+NOT LIABLE FOR CLAIMS, DAMAGES OR OTHER LIABILITY ARISING FROM THESE MATERIALS,
+EXCEPT AS REQUIRED BY APPLICABLE LAW OR AN EXPRESS WRITTEN AGREEMENT.
