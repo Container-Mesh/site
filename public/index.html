@@ -39,6 +39,7 @@
       <a class="button" data-docs-href="/docs/" href="docs/">Read the docs</a>
       <a class="button quiet" data-docs-href="/docs/first-launch/" href="docs/first-launch/">First launch</a>
     </div>
+    <p class="contact-row"><a class="contact" href="#contact">Contact</a></p>
   </div>
   <img class="hero-icon" src="assets/app-icon.png" width="512" height="512" alt="ContainerMesh app icon: an ivory C and M joined together on an orange square.">
 </section>
@@ -56,33 +57,38 @@
     <p>After you choose <strong>Enable automatic networking</strong>, ContainerMesh connects when it opens, and until you pause it.</p>
   </article>
 </section>
+<figure class="shot">
+  <img src="assets/product/containers.png" width="1180" height="640" alt="Illustration of the ContainerMesh window. Example containers shop-web, shop-api, shop-db, and worker have mesh.test names.">
+</figure>
 <section class="split">
   <div class="name-card">
     <h2>Two names for the same container</h2>
     <dl>
       <dt>Default</dt>
-      <dd>shop-web-1.mesh.test</dd>
+      <dd>shop-web.mesh.test</dd>
       <dt>With the Compose stack</dt>
-      <dd>shop-web-1.shop.mesh.test</dd>
+      <dd>shop-web.shop.mesh.test</dd>
     </dl>
-    <p>Use the port the application already listens on. Port 80 is <span class="host">http://shop-web-1.mesh.test/</span>. Port 5432 is <span class="host">db.mesh.test:5432</span>.</p>
+    <p>Use the port the application already listens on. Port 80 is <span class="host">http://shop-web.mesh.test/</span>. Port 5432 is <span class="host">shop-db.mesh.test:5432</span>.</p>
   </div>
-  <div class="name-card">
-    <h2>Where it lives</h2>
-    <p>The window lists containers. Closing it leaves ContainerMesh in the menu bar, where you can pause, resume, and open the window again.</p>
-    <p>The Snapfit mark is the joined C and M. Orange runs from <span class="host">#FF941F</span> to <span class="host">#B8360B</span>. The mark itself is ivory, <span class="host">#FFF4DD</span>.</p>
-  </div>
+  <figure class="shot menu-shot">
+    <img src="assets/product/menu.png" width="420" height="360" alt="Illustration of the ContainerMesh menu: Open, Settings, Pause networking, connection checks, logs, and Quit.">
+    <figcaption>Closing the window leaves this menu in the menu bar.</figcaption>
+  </figure>
 </section>
 <section class="choice">
   <h2>The connection is a choice.</h2>
-  <p>Opening Docker Desktop does not turn networking on. Finishing the prerequisite check does not turn it on either. Automatic connection starts only when you choose <strong>Enable automatic networking</strong>.</p>
-  <p>Pause keeps the connection off across later launches. Quit disconnects for this session and leaves that saved choice for the next time the app opens.</p>
-  <p><a data-docs-href="/docs/connection/" href="docs/connection/">Pause, resume, and quit</a></p>
+  <div class="choice-grid">
+    <p>Opening Docker Desktop does not turn networking on. Finishing the prerequisite check does not turn it on either.</p>
+    <p>Automatic connection starts only when you choose <strong>Enable automatic networking</strong>.</p>
+    <p>Pause keeps the connection off across later launches. Quit disconnects for this session and leaves that saved choice for the next launch.</p>
+    <p><a data-docs-href="/docs/connection/" href="docs/connection/">Pause, resume, and quit</a></p>
+  </div>
 </section>
 </main>
 <footer class="site-footer">
-  <p>ContainerMesh · <a href="https://www.containermesh.app/">www.containermesh.app</a> · <a href="https://www.containermesh.dev/docs/">www.containermesh.dev</a></p>
-  <p><a href="https://github.com/Container-Mesh/site/security/policy">Security reports stay private</a>. Docker and macOS are trademarks of their owners.</p>
+  <p>© 2026 <a href="https://github.com/Aphelion-Works">Aphelion Works</a></p>
+  <p><a class="contact" href="#contact">Contact</a> · <a href="https://github.com/Container-Mesh/site/security/policy">Security reports stay private</a></p>
 </footer>
 </body>
 </html>

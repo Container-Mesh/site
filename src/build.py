@@ -32,10 +32,7 @@ REQUIRED = [
     "mesh.test",
     "www.containermesh.app",
     "www.containermesh.dev",
-    "#FF941F",
-    "#B8360B",
-    "#FFF4DD",
-    "Snapfit",
+    "Aphelion Works",
 ]
 
 # Public pages must not describe the private helper, signing, or unreleased work.
@@ -135,8 +132,8 @@ def page(meta: dict[str, str], body: str, path: str, kind: str) -> str:
 {body}
 </main>
 <footer class="site-footer">
-  <p>ContainerMesh · <a href="https://www.containermesh.app/">www.containermesh.app</a> · <a href="https://www.containermesh.dev/docs/">www.containermesh.dev</a></p>
-  <p><a href="https://github.com/Container-Mesh/site/security/policy">Security reports stay private</a>. Docker and macOS are trademarks of their owners.</p>
+  <p>© 2026 <a href="https://github.com/Aphelion-Works">Aphelion Works</a></p>
+  <p><a class="contact" href="#contact">Contact</a> · <a href="https://github.com/Container-Mesh/site/security/policy">Security reports stay private</a></p>
 </footer>
 </body>
 </html>
