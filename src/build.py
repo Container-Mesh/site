@@ -2,6 +2,7 @@
 """Build the public site into public/, and refuse private-product wording."""
 
 import filecmp
+import posixpath
 import re
 import shutil
 import sys
@@ -61,6 +62,25 @@ def parse(path: Path) -> tuple[dict[str, str], str]:
     return meta, body.strip()
 
 
+def rel(from_path: str, target: str) -> str:
+    """Page-relative URL, so GitHub Pages and the custom domains share one tree."""
+    from_dir = from_path if from_path.endswith("/") else from_path.rsplit("/", 1)[0] + "/"
+    result = posixpath.relpath(target, from_dir)
+    if target.endswith("/") and not result.endswith("/"):
+        result += "/"
+    return "./" if result == "." else result
+
+
+def rewrite_local_urls(body: str, from_path: str) -> str:
+    def replace(match: re.Match[str]) -> str:
+        url = match.group(2)
+        if not url.startswith("/") or url.startswith("//"):
+            return match.group(0)
+        return f'{match.group(1)}="{rel(from_path, url)}"'
+
+    return re.sub(r'(?<![\w-])(href|src)="([^"]*)"', replace, body)
+
+
 def page(meta: dict[str, str], body: str, path: str, kind: str) -> str:
     canonical_origin = "https://www.containermesh.app" if kind == "home" else "https://www.containermesh.dev"
     canonical = canonical_origin + path
@@ -71,10 +91,12 @@ def page(meta: dict[str, str], body: str, path: str, kind: str) -> str:
         for label, href, _source in DOCS:
             current = ' aria-current="page"' if href == path else ""
             links.append(
-                f'<a data-docs-href="{href}" href="{href}"{current}>{escape(label)}</a>'
+                f'<a data-docs-href="{href}" href="{rel(path, href)}"{current}>{escape(label)}</a>'
             )
         side = '<nav class="side" aria-label="Documentation">' + "".join(links) + "</nav>"
-        body = f'<div class="doc">{side}<article class="prose">{body}</article></div>'
+        body = f'<div class="doc">{side}<article class="prose">{rewrite_local_urls(body, path)}</article></div>'
+    else:
+        body = rewrite_local_urls(body, path)
     structured = ""
     if kind == "home":
         structured = """
@@ -89,23 +111,23 @@ def page(meta: dict[str, str], body: str, path: str, kind: str) -> str:
 <title>{escape(meta["title"])}</title>
 <meta name="description" content="{escape(meta["description"])}">
 <link rel="canonical" href="{canonical}">
-<link rel="icon" href="/assets/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="icon" href="{rel(path, "/assets/favicon.png")}" type="image/png">
+<link rel="apple-touch-icon" href="{rel(path, "/assets/apple-touch-icon.png")}">
 <meta name="theme-color" content="#B8360B">
 <meta property="og:title" content="{escape(meta["title"])}">
 <meta property="og:description" content="{escape(meta["description"])}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="{canonical_origin}/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="/assets/site.css">
-<script src="/assets/host.js" defer></script>{structured}
+<link rel="stylesheet" href="{rel(path, "/assets/site.css")}">
+<script src="{rel(path, "/assets/host.js")}" defer></script>{structured}
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
 <header class="bar">
-  <a class="brand" data-app-href="/" href="/"><img src="/assets/app-icon.png" width="36" height="36" alt=""><span>ContainerMesh</span></a>
+  <a class="brand" data-app-href="/" href="{rel(path, "/")}"><img src="{rel(path, "/assets/app-icon.png")}" width="36" height="36" alt=""><span>ContainerMesh</span></a>
   <nav aria-label="Site">
-    <a data-docs-href="/docs/" href="/docs/"{docs_current}>Documentation</a>
+    <a data-docs-href="/docs/" href="{rel(path, "/docs/")}"{docs_current}>Documentation</a>
     <a href="https://github.com/Container-Mesh/site/issues/new?template=bug_report.yml">Report a bug</a>
   </nav>
 </header>
