@@ -21,6 +21,7 @@ DOCS = [
     ("Names", "/docs/names/", "docs/names.html"),
     ("Containers", "/docs/containers/", "docs/containers.html"),
     ("Connection", "/docs/connection/", "docs/connection.html"),
+    ("Limits", "/docs/limits/", "docs/limits.html"),
     ("Settings", "/docs/settings/", "docs/settings.html"),
     ("Troubleshooting", "/docs/troubleshooting/", "docs/troubleshooting.html"),
     ("Bugs and security", "/docs/support/", "docs/support.html"),

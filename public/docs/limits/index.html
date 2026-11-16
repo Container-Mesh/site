@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Limits</title>
+<meta name="description" content="The shared network, who can change it, VPNs, Docker, logs, and two open advisories.">
+<link rel="canonical" href="https://www.containermesh.dev/docs/limits/">
+<link rel="icon" href="../../assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#B8360B">
+<meta property="og:title" content="Limits">
+<meta property="og:description" content="The shared network, who can change it, VPNs, Docker, logs, and two open advisories.">
+<meta property="og:url" content="https://www.containermesh.dev/docs/limits/">
+<meta property="og:image" content="https://www.containermesh.dev/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../../assets/site.css">
+<script src="../../assets/host.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="brand" data-app-href="/" href="../../"><img src="../../assets/app-icon.png" width="36" height="36" alt=""><span>ContainerMesh</span></a>
+  <nav aria-label="Site">
+    <a data-docs-href="/docs/" href="../" aria-current="page">Documentation</a>
+    <a href="https://github.com/Container-Mesh/site/issues/new?template=bug_report.yml">Report a bug</a>
+  </nav>
+</header>
+<main id="content" class="wrap">
+<div class="doc"><nav class="side" aria-label="Documentation"><a data-docs-href="/docs/" href="../">Overview</a><a data-docs-href="/docs/first-launch/" href="../first-launch/">First launch</a><a data-docs-href="/docs/names/" href="../names/">Names</a><a data-docs-href="/docs/containers/" href="../containers/">Containers</a><a data-docs-href="/docs/connection/" href="../connection/">Connection</a><a data-docs-href="/docs/limits/" href="./" aria-current="page">Limits</a><a data-docs-href="/docs/settings/" href="../settings/">Settings</a><a data-docs-href="/docs/troubleshooting/" href="../troubleshooting/">Troubleshooting</a><a data-docs-href="/docs/support/" href="../support/">Bugs and security</a></nav><article class="prose"><h1>Limits</h1>
+<p>ContainerMesh connects containers on this Mac. These are the limits of that connection.</p>
+<h2>One shared network</h2>
+<p>Every eligible running container joins one shared network. Containers from different projects can reach each other on all ports. While ContainerMesh is connected, programs on your Mac can reach every port of every connected container. This is shared local connectivity. It is not a separate network for each project.</p>
+<p>Pause and Quit stop ContainerMesh. They leave the containers on that network, so those containers can still reach each other. Turning a name off only hides the name. To keep a container off the network, create it with the label <span class="host">io.containermesh.enabled=false</span>.</p>
+<p>A container that uses the host network, no network, or another container's network stays off.</p>
+<h2>Who can change the connection</h2>
+<p>Any program running as the logged-in user can ask ContainerMesh for a free name ending in <span class="host">.test</span>, or for one private address range from /16 to /30.</p>
+<h2>VPNs</h2>
+<p>A VPN that sends all traffic can stay on. ContainerMesh adds its own route beside that VPN. If a route already covers the same private addresses, ContainerMesh refuses to connect. If such a route appears while ContainerMesh is connected, ContainerMesh stops.</p>
+<h2>Which Docker</h2>
+<p>ContainerMesh accepts a Docker context whose address is a local socket, written as <span class="host">unix://</span>. It checks that when the connection starts, and it does not keep checking. A socket of that form can still be forwarded to a Docker engine on another machine.</p>
+<h2>Logs</h2>
+<p><strong>Copy logs</strong> copies the text as ContainerMesh has it. Nothing is removed. The text can include container names and folders in your home directory. Read it before you paste it into a bug report.</p>
+<h2>The built app</h2>
+<p>The app contains the revision it was built from, and the names of the modules used in that build.</p>
+<h2>Open advisories</h2>
+<p>Two dependency advisories stay open. Neither is part of the app you run. The build stops if either module is imported.</p>
+<ul>
+  <li><a href="https://github.com/advisories/GHSA-685w-q87j-wqw3">CVE-2026-85747</a></li>
+  <li><a href="https://github.com/advisories/GHSA-6gx8-r37x-4vw8">CVE-2026-37236</a></li>
+</ul></article></div>
+</main>
+<footer class="site-footer">
+  <p>© 2026 <a href="https://github.com/Aphelion-Works">Aphelion Works</a> · <a class="contact" href="#contact">Contact</a> · <a href="https://github.com/Container-Mesh/site/security/policy">Security reports stay private</a></p>
+</footer>
+</body>
+</html>

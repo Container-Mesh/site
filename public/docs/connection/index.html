@@ -27,7 +27,7 @@
   </nav>
 </header>
 <main id="content" class="wrap">
-<div class="doc"><nav class="side" aria-label="Documentation"><a data-docs-href="/docs/" href="../">Overview</a><a data-docs-href="/docs/first-launch/" href="../first-launch/">First launch</a><a data-docs-href="/docs/names/" href="../names/">Names</a><a data-docs-href="/docs/containers/" href="../containers/">Containers</a><a data-docs-href="/docs/connection/" href="./" aria-current="page">Connection</a><a data-docs-href="/docs/settings/" href="../settings/">Settings</a><a data-docs-href="/docs/troubleshooting/" href="../troubleshooting/">Troubleshooting</a><a data-docs-href="/docs/support/" href="../support/">Bugs and security</a></nav><article class="prose"><h1>Connection</h1>
+<div class="doc"><nav class="side" aria-label="Documentation"><a data-docs-href="/docs/" href="../">Overview</a><a data-docs-href="/docs/first-launch/" href="../first-launch/">First launch</a><a data-docs-href="/docs/names/" href="../names/">Names</a><a data-docs-href="/docs/containers/" href="../containers/">Containers</a><a data-docs-href="/docs/connection/" href="./" aria-current="page">Connection</a><a data-docs-href="/docs/limits/" href="../limits/">Limits</a><a data-docs-href="/docs/settings/" href="../settings/">Settings</a><a data-docs-href="/docs/troubleshooting/" href="../troubleshooting/">Troubleshooting</a><a data-docs-href="/docs/support/" href="../support/">Bugs and security</a></nav><article class="prose"><h1>Connection</h1>
 <p>Automatic connection exists only after <strong>Enable automatic networking</strong>. Before that choice, pause and resume are not how you start.</p>
 <h2>Pause and resume</h2>
 <p>The window shows <strong>Pause</strong> and <strong>Resume</strong>. The menu bar shows <strong>Pause networking</strong> and <strong>Resume networking</strong>. Pause stops automatic reconnection and keeps that choice the next time ContainerMesh opens, including an open-at-login launch. Resume connects again once the prerequisites are ready.</p>
@@ -45,7 +45,7 @@
   <li><strong>View logs</strong></li>
   <li><strong>Quit ContainerMesh</strong></li>
 </ul>
-<p>Closing the window does not quit. The menu-bar icon keeps the app available. Quit disconnects for this session. The saved choice is still what the next launch follows: a paused app stays paused, and an app you left connected connects again.</p>
+<p>Closing the window does not quit. The menu-bar icon keeps the app available. Quit stops ContainerMesh for this session. Containers that already joined the shared network stay on it. The saved choice is still what the next launch follows: a paused app stays paused, and an app you left connected connects again. See <a data-docs-href="/docs/limits/" href="../limits/">Limits</a>.</p>
 <h2>After an interruption</h2>
 <p>Once you have opted in, ContainerMesh connects at launch. If Docker or a prerequisite drops, it tries again while the saved choice is still to stay connected. It uses the saved configuration, not an unfinished edit in Settings.</p></article></div>
 </main>

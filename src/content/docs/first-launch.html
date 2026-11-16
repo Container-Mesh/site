@@ -13,5 +13,5 @@ description: How ContainerMesh checks prerequisites and waits for Enable automat
   <figcaption>The opt-in stays separate from opening Docker.</figcaption>
 </figure>
 <h2>Enable automatic networking</h2>
-<p>When the checks are ready, choose <strong>Enable automatic networking</strong>. That is the opt-in. Until then, Containers stays behind Setup. Settings, connection checks, and logs remain available.</p>
+<p>When the checks are ready, choose <strong>Enable automatic networking</strong>. That is the opt-in. Eligible containers then join one shared network. Until then, Containers stays behind Setup. Settings, connection checks, and logs remain available. <a data-docs-href="/docs/limits/" href="/docs/limits/">Limits</a> describes what that network allows.</p>
 <p>After that choice, ContainerMesh connects when it launches, and again after Docker or a prerequisite recovers, until you pause it. Later launches use the saved configuration. An edit you have not finished in Settings is not applied on its own.</p>
